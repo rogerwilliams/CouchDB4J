@@ -1,0 +1,11 @@
+.classpath
+.project
+.svn
+build/
+dist/
+test.log
+*.ipr
+*.iml
+*.iws
+.idea
+target/
