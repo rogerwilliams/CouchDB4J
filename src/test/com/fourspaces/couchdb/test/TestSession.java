@@ -30,7 +30,8 @@ public class TestSession {
 					Boolean.parseBoolean(props.getProperty("secure")));
 		} catch (Exception e) {
 			System.out.println( "Exception" );
-			return new Session("127.0.0.1",5984);
+			//return new Session("127.0.0.1",5984);
+			return new Session("10.1.1.7",5984,"couchdb", "couchdb", true, false);
 			//throw new RuntimeException(e);
 		}		
 	}
