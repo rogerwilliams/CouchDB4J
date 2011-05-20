@@ -1,4 +1,4 @@
-host=localhost
+host=10.1.1.7
 port=5984
 username=couchdb
 password=couchdb
