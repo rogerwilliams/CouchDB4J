@@ -1,6 +1,5 @@
 package com.fourspaces.couchdb.test;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -15,6 +14,14 @@ public class TestSession {
 			InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("couchdb-test.properties");
 			props.load(is);
 			//return new Session(props.getProperty("host"),Integer.parseInt(props.getProperty("port")));
+			
+			System.out.println( props.getProperty("host") );
+			System.out.println( props.getProperty("port") );
+			System.out.println( props.getProperty("username") );
+			System.out.println( props.getProperty("password") );
+			System.out.println( props.getProperty("usesAuth") );
+			System.out.println( props.getProperty("secure") );
+			
 			return new Session(props.getProperty("host"),
 					Integer.parseInt(props.getProperty("port")),
 					props.getProperty("username"),
@@ -22,6 +29,7 @@ public class TestSession {
 					Boolean.parseBoolean(props.getProperty("usesAuth")),
 					Boolean.parseBoolean(props.getProperty("secure")));
 		} catch (Exception e) {
+			System.out.println( "Exception" );
 			return new Session("127.0.0.1",5984);
 			//throw new RuntimeException(e);
 		}		
