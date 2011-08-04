@@ -30,7 +30,9 @@ package com.fourspaces.couchdb;
 public class View {
 	protected String key;
 	protected String startKey;
+	protected String startKeyDocId;
 	protected String endKey;
+	protected String endKeyDocId;
 	protected Integer limit;
 	protected Boolean update;
 	protected Boolean reverse;
@@ -95,9 +97,17 @@ public class View {
 			if (!queryString.equals("")) { queryString+="&"; }
 			queryString+="startkey="+startKey;
 		}
+		if (startKeyDocId!=null) {
+			if (!queryString.equals("")) { queryString+="&"; }
+			queryString+="startkey_docid="+startKeyDocId;
+		}
 		if (endKey!=null) {
 			if (!queryString.equals("")) { queryString+="&"; }
 			queryString+="endkey="+endKey;
+		}
+		if (endKeyDocId!=null) {
+			if (!queryString.equals("")) { queryString+="&"; }
+			queryString+="endkey_docid="+endKeyDocId;
 		}
 		if (skip!=null) {
 			if (!queryString.equals("")) { queryString+="&"; }
@@ -157,6 +167,13 @@ public class View {
 		this.endKey = endKey;
 	}
 	/**
+	 * Stop listing at this docId
+	 * @param endKey
+	 */
+	public void setEndKeyDocId(String endKeyDocId) {
+		this.endKeyDocId = endKeyDocId;
+	}
+	/**
 	 * Reverse the listing
 	 * @param reverse
      * @deprecated CouchDB 0.9 uses "descending" instead
@@ -181,6 +198,13 @@ public class View {
 	 */
 	public void setStartKey(String startKey) {
 		this.startKey = startKey;
+	}
+	/**
+	 * Start listing at this docId
+	 * @param startKeyDocId
+	 */
+	public void setStartKeyDocid(String startKeyDocId) {
+		this.startKeyDocId = startKeyDocId;
 	}
 	/**
 	 * Not sure... might be for batch updates, but not sure.
