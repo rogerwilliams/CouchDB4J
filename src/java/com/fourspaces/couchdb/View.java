@@ -36,8 +36,10 @@ public class View {
 	protected Integer limit;
 	protected Boolean update;
 	protected Boolean reverse;
+	protected Boolean reduce;
 	protected String skip;
-    protected Boolean group;
+  protected Boolean group;
+  protected String groupLevel;
 	protected Boolean includeDocs;
 	
 	protected String name;
@@ -117,6 +119,10 @@ public class View {
 			if (!queryString.equals("")) { queryString+="&"; }
 			queryString+="limit="+limit;
 		}
+		if (groupLevel!=null) {
+			if (!queryString.equals("")) { queryString+="&"; }
+			queryString+="group_level="+groupLevel;
+		}
 		if (update!=null && update.booleanValue()) {
 			if (!queryString.equals("")) { queryString+="&"; }
 			queryString+="update=true";
@@ -128,6 +134,10 @@ public class View {
 		if (reverse!=null && reverse.booleanValue()) {
 			if (!queryString.equals("")) { queryString+="&"; }
 		 			queryString+="descending=true";
+		}
+		if (reduce!=null) {
+			if (!queryString.equals("")) { queryString+="&"; }
+		 			queryString+="reduce="+ (reduce?"true":"false");
 		}
         if (group!=null && group.booleanValue()) {
         	if (!queryString.equals("")) { queryString+="&"; }
@@ -207,11 +217,25 @@ public class View {
 		this.startKeyDocId = startKeyDocId;
 	}
 	/**
+	 * Set group_level
+	 * @param groupLevel
+	 */
+	public void setGroupLevel(String groupLevel) {
+		this.groupLevel = groupLevel;
+	}
+	/**
 	 * Not sure... might be for batch updates, but not sure.
 	 * @param update
 	 */
 	public void setUpdate(Boolean update) {
 		this.update = update;
+	}
+	/**
+	 * Set reduce
+	 * @param reduce
+	 */
+	public void setReduce(Boolean reduce) {
+		this.reduce = reduce;
 	}
 
     public void setWithDocs(Boolean withDocs) {
